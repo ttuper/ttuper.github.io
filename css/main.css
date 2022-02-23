@@ -2691,7 +2691,7 @@ hr {
   padding-bottom: 80px;
 }
 .post-block:first-of-type {
-  padding-top: 80px;
+  padding-top: 0px;
 }
 @media (max-width: 767px) {
   .post-block:first-of-type {
@@ -2738,7 +2738,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #1d4b9a;
+  background: #988b85;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2775,11 +2775,8 @@ hr {
   margin: 0 auto;
   width: 70%;
 }
-.post-block:first-of-type {
-  margin-top: 0px;
-}
 .header-inner {
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
 }
 .menu {
