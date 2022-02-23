@@ -2738,7 +2738,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #20d9db;
+  background: #e8d24d;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2763,4 +2763,15 @@ hr {
 }
 .sub-menu .menu-item {
   display: inline-block;
+}
+.post-article {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.main-inner {
+  margin: 0 auto;
+  width: 70%;
 }
