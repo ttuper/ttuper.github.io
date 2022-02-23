@@ -2738,7 +2738,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #ff37cc;
+  background: #1d4b9a;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2777,4 +2777,11 @@ hr {
 }
 .post-block:first-of-type {
   margin-top: 0px;
+}
+.header-inner {
+  width: 100%;
+  margin: 0 auto;
+}
+.menu {
+  text-align: right;
 }
