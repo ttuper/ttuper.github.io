@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/2022/02/24/Docker%E5%86%85%E9%83%A8%E7%BD%B2%E6%97%A0%E4%BA%BA%E6%9C%BADrone/</url>
-    <content><![CDATA[<h4 id="GO项目"><a href="#GO项目" class="headerlink" title="GO项目"></a>GO项目</h4><p>在github上新建一个仓库<code>drone-test</code>，clone到本地，创建一个简单的go程序：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">   &quot;github.com/gin-gonic/gin&quot;  </span><br><span class="line"> &quot;github.com/sirupsen/logrus&quot; &quot;net/http&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">   r := gin.Default()  </span><br><span class="line">   r.GET(&quot;/test&quot;, func(c *gin.Context) &#123;  </span><br><span class="line">      c.JSON(http.StatusOK, gin.H&#123;  </span><br><span class="line">         &quot;msg&quot;: &quot;ok&quot;,  </span><br><span class="line"> &#125;)  </span><br><span class="line">   &#125;)  </span><br><span class="line">  </span><br><span class="line">   if err := r.Run(&quot;:8080&quot;); err != nil &#123;  </span><br><span class="line">      logrus.Error(&quot;listen fail!&quot;)  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个服务监听8080端口，当访问<code>/test</code>路由时，返回json串。<br>我本地的版本是go1.16.13</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Golang的随机数rand原理</title>
     <url>/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">	&quot;fmt&quot;  </span><br><span class="line">	&quot;math/rand&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">	fmt.Println(rand.Intn(10))  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>👆这段代码，无论运行多少遍，打印出来的每次都是<strong>1</strong>。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。</p>
+<span id="more"></span>
+
 <h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>![[Pasted image 20220307162552.png]]<br>通过<a href="https://golang.google.cn/pkg/math/rand/">官方文档</a>中的解释，可以看出一些端倪。文档对该函数的说明是<strong>Intn 以 int 形式返回来自默认 Source 的半开区间[0, n]中的非负伪随机数</strong>，从这段话，可以得出两个讯息：</p>
 <ol>
 <li>golang的随机算法是伪随机的</li>

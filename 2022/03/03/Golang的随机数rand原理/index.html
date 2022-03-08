@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <meta name="description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。 官">
+  <meta name="description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Golang的随机数rand原理">
 <meta property="og:url" content="http://example.com/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="嗨皮田酱写字区">
-<meta property="og:description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。 官">
+<meta property="og:description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-03T06:29:26.000Z">
-<meta property="article:modified_time" content="2022-03-08T06:27:27.950Z">
+<meta property="article:modified_time" content="2022-03-08T06:40:59.833Z">
 <meta property="article:author" content="嗨皮田酱">
 <meta name="twitter:card" content="summary">
 
@@ -162,7 +162,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -238,7 +238,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-08 14:27:27" itemprop="dateModified" datetime="2022-03-08T14:27:27+08:00">2022-03-08</time>
+      <time title="修改时间：2022-03-08 14:40:59" itemprop="dateModified" datetime="2022-03-08T14:40:59+08:00">2022-03-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,6 +269,8 @@
     <div class="post-body" itemprop="articleBody">
         <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">	&quot;fmt&quot;  </span><br><span class="line">	&quot;math/rand&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">	fmt.Println(rand.Intn(10))  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>👆这段代码，无论运行多少遍，打印出来的每次都是<strong>1</strong>。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。</p>
+<span id="more"></span>
+
 <h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>![[Pasted image 20220307162552.png]]<br>通过<a target="_blank" rel="noopener" href="https://golang.google.cn/pkg/math/rand/">官方文档</a>中的解释，可以看出一些端倪。文档对该函数的说明是<strong>Intn 以 int 形式返回来自默认 Source 的半开区间[0, n]中的非负伪随机数</strong>，从这段话，可以得出两个讯息：</p>
 <ol>
 <li>golang的随机算法是伪随机的</li>
@@ -302,15 +304,6 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2022/02/24/Docker%E5%86%85%E9%83%A8%E7%BD%B2%E6%97%A0%E4%BA%BA%E6%9C%BADrone/" rel="prev" title="">
-                  <i class="fa fa-chevron-left"></i> 
-                </a>
-            </div>
-            <div class="post-nav-item">
-            </div>
-          </div>
     </footer>
   </article>
 </div>
