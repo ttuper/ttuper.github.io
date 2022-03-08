@@ -7,7 +7,7 @@
 <p>👆这段代码，无论运行多少遍，打印出来的每次都是<strong>1</strong>。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。</p>
 <span id="more"></span>
 
-<h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>![[Pasted image 20220307162552.png]]<br>通过<a href="https://golang.google.cn/pkg/math/rand/">官方文档</a>中的解释，可以看出一些端倪。文档对该函数的说明是<strong>Intn 以 int 形式返回来自默认 Source 的半开区间[0, n]中的非负伪随机数</strong>，从这段话，可以得出两个讯息：</p>
+<h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>![[official-intn.png]]<br>通过<a href="https://golang.google.cn/pkg/math/rand/">官方文档</a>中的解释，可以看出一些端倪。文档对该函数的说明是<strong>Intn 以 int 形式返回来自默认 Source 的半开区间[0, n]中的非负伪随机数</strong>，从这段话，可以得出两个讯息：</p>
 <ol>
 <li>golang的随机算法是伪随机的</li>
 <li>存在一个默认source的半开区间</li>
