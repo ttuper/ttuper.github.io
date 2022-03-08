@@ -20,23 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="嗨皮田酱写字区">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。 官">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang的随机数rand原理">
+<meta property="og:url" content="http://example.com/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="嗨皮田酱写字区">
+<meta property="og:description" content="背景123456789package main    import (  	&quot;fmt&quot;  	&quot;math&#x2F;rand&quot;)    func main() &amp;#123;  	fmt.Println(rand.Intn(10))  &amp;#125; 👆这段代码，无论运行多少遍，打印出来的每次都是1。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。 官">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-03T06:29:26.000Z">
+<meta property="article:modified_time" content="2022-03-08T06:27:27.950Z">
 <meta property="article:author" content="嗨皮田酱">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/","path":"2022/03/03/Golang的随机数rand原理/","title":"Golang的随机数rand原理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>嗨皮田酱写字区</title>
+<title>Golang的随机数rand原理 | 嗨皮田酱写字区</title>
   
 
 
@@ -66,7 +70,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">嗨皮田酱写字区</h1>
+      <p class="site-title">嗨皮田酱写字区</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -130,7 +134,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -143,6 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">官方说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E8%B7%9F%E8%B8%AA"><span class="nav-number">3.</span> <span class="nav-text">源码跟踪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -190,9 +195,10 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
@@ -200,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content
-  post-article" lang="" style="opacity: 1;display: block;transform: translateY(0px);">
+  post-article" lang="zh-CN" style="opacity: 1;display: block;transform: translateY(0px);">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,9 +219,9 @@
       <meta itemprop="name" content="嗨皮田酱写字区">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/03/Golang%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0rand%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">Golang的随机数rand原理</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Golang的随机数rand原理
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -245,6 +251,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -254,7 +267,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">	&quot;fmt&quot;  </span><br><span class="line">	&quot;math/rand&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">	fmt.Println(rand.Intn(10))  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">	&quot;fmt&quot;  </span><br><span class="line">	&quot;math/rand&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">	fmt.Println(rand.Intn(10))  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>👆这段代码，无论运行多少遍，打印出来的每次都是<strong>1</strong>。按道理，应该每次出来的数都不一样才对，也就是在10以内随机出一个数。</p>
 <h4 id="官方说明"><a href="#官方说明" class="headerlink" title="官方说明"></a>官方说明</h4><p>![[Pasted image 20220307162552.png]]<br>通过<a target="_blank" rel="noopener" href="https://golang.google.cn/pkg/math/rand/">官方文档</a>中的解释，可以看出一些端倪。文档对该函数的说明是<strong>Intn 以 int 形式返回来自默认 Source 的半开区间[0, n]中的非负伪随机数</strong>，从这段话，可以得出两个讯息：</p>
 <ol>
@@ -279,7 +292,6 @@
 
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://golang.google.cn/pkg/math/rand/">官方文档</a><br><a target="_blank" rel="noopener" href="https://yourbasic.org/algorithms/random-number-generator-seed/">随机数生成器中的种子是什么？</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/413653714">一文完全掌握 Go math&#x2F;rand</a></p>
 
-      
     </div>
 
     
@@ -287,79 +299,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/24/Docker%E5%86%85%E9%83%A8%E7%BD%B2%E6%97%A0%E4%BA%BA%E6%9C%BADrone/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content
-  post-article" lang="" style="opacity: 1;display: block;transform: translateY(0px);">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/24/Docker%E5%86%85%E9%83%A8%E7%BD%B2%E6%97%A0%E4%BA%BA%E6%9C%BADrone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="嗨皮田酱">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="嗨皮田酱写字区">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/24/Docker%E5%86%85%E9%83%A8%E7%BD%B2%E6%97%A0%E4%BA%BA%E6%9C%BADrone/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-02-24 15:47:57 / 修改时间：17:37:45" itemprop="dateCreated datePublished" datetime="2022-02-24T15:47:57+08:00">2022-02-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="GO项目"><a href="#GO项目" class="headerlink" title="GO项目"></a>GO项目</h4><p>在github上新建一个仓库<code>drone-test</code>，clone到本地，创建一个简单的go程序：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">   &quot;github.com/gin-gonic/gin&quot;  </span><br><span class="line"> &quot;github.com/sirupsen/logrus&quot; &quot;net/http&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() &#123;  </span><br><span class="line">   r := gin.Default()  </span><br><span class="line">   r.GET(&quot;/test&quot;, func(c *gin.Context) &#123;  </span><br><span class="line">      c.JSON(http.StatusOK, gin.H&#123;  </span><br><span class="line">         &quot;msg&quot;: &quot;ok&quot;,  </span><br><span class="line"> &#125;)  </span><br><span class="line">   &#125;)  </span><br><span class="line">  </span><br><span class="line">   if err := r.Run(&quot;:8080&quot;); err != nil &#123;  </span><br><span class="line">      logrus.Error(&quot;listen fail!&quot;)  </span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个服务监听8080端口，当访问<code>/test</code>路由时，返回json串。<br>我本地的版本是go1.16.13</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
