@@ -13,6 +13,8 @@
 <li><code>&#x300C;bytes.Count([]byte(str), nil) - 1&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
 </ol>
 <p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x4E00;&#x6B21;&#x5BF9;&#x8FD9;&#x4E94;&#x79CD;&#x65B9;&#x6CD5;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x3002;</p>
+<span id="more"></span>
+
 <h4 id="&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;len-rune-str"><a href="#&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;len-rune-str" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;len([]rune(str))"></a>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;len([]rune(str))</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// The len built-in function returns the length of v, according to its type:  </span><br><span class="line">// Array: the number of elements in v.  </span><br><span class="line">// Pointer to array: the number of elements in *v (even if v is nil).  </span><br><span class="line">// Slice, or map: the number of elements in v; if v is nil, len(v) is zero.  </span><br><span class="line">// String: the number of bytes in v.  </span><br><span class="line">// Channel: the number of elements queued (unread) in the channel buffer;  </span><br><span class="line">//          if v is nil, len(v) is zero.  </span><br><span class="line">// For some arguments, such as a string literal or a simple array expression, the  </span><br><span class="line">// result can be a constant. See the Go language specification&apos;s &quot;Length and  </span><br><span class="line">// capacity&quot; section for details.  </span><br><span class="line">func len(v Type) int</span><br></pre></td></tr></table></figure>
 <p>&#x4EE5;&#x4E0A;&#x662F;&#x5B98;&#x65B9;&#x6E90;&#x7801;&#x4E2D;&#x7ED9;&#x7684;&#x6CE8;&#x91CA;&#x3002;</p>
 <ol>
