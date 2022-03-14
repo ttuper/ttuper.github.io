@@ -232,7 +232,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-03-14 19:02:27" itemprop="dateModified" datetime="2022-03-14T19:02:27+08:00">2022-03-14</time>
+      <time title="修改时间：2022-03-14 19:06:10" itemprop="dateModified" datetime="2022-03-14T19:06:10+08:00">2022-03-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,16 +254,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="&#x4EE3;&#x7801;"><a href="#&#x4EE3;&#x7801;" class="headerlink" title="&#x4EE3;&#x7801;"></a>&#x4EE3;&#x7801;</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package main  </span><br><span class="line">  </span><br><span class="line">import (  </span><br><span class="line">  &quot;bytes&quot;  </span><br><span class="line">  &quot;fmt&quot; </span><br><span class="line">  &quot;strings&quot; </span><br><span class="line">  &quot;unicode/utf8&quot;)  </span><br><span class="line">  </span><br><span class="line">func main() {  </span><br><span class="line">  str:= &quot;&#x5927;&#x5BB6;&#x597D;&#xFF0C;hello world&quot;</span><br><span class="line">  fmt.Printf(  </span><br><span class="line">    &quot;&#x300C;len([]rune(str))&#x300D;&#x7684;&#x503C;&#x662F;:%d\n&quot;,  </span><br><span class="line">    len([]rune(str)))  </span><br><span class="line">  fmt.Printf(  </span><br><span class="line">    &quot;&#x300C;utf8.RuneCountInString(str)&#x300D;&#x7684;&#x503C;&#x662F;:%d\n&quot;,  </span><br><span class="line">    utf8.RuneCountInString(str))  </span><br><span class="line">  fmt.Printf(  </span><br><span class="line">    &quot;&#x300C;utf8.RuneCount([]byte(str))&#x300D;&#x7684;&#x503C;&#x662F;:%d\n&quot;,  </span><br><span class="line">    utf8.RuneCount([]byte(str)))  </span><br><span class="line">  fmt.Printf(  </span><br><span class="line">    &quot;&#x300C;strings.Count(str, \&quot;\&quot;) - 1&#x300D;&#x7684;&#x503C;&#x662F;:%d\n&quot;,  </span><br><span class="line">    strings.Count(str, &quot;&quot;) - 1)  </span><br><span class="line">  fmt.Printf(  </span><br><span class="line">    &quot;&#x300C;bytes.Count([]byte(str), nil) - 1&#x300D;&#x7684;&#x503C;&#x662F;:%d\n&quot;,  </span><br><span class="line">    bytes.Count([]byte(str), nil) - 1)  </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p><strong>&#x7ED3;&#x8BBA;:</strong></p>
-<ol>
-<li><code>&#x300C;len([]rune(str))&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
-<li><code>&#x300C;utf8.RuneCountInString(str)&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
-<li><code>&#x300C;utf8.RuneCount([]byte(str))&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
-<li><code>&#x300C;strings.Count(str, &quot;&quot;) - 1&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
-<li><code>&#x300C;bytes.Count([]byte(str), nil) - 1&#x300D;&#x7684;&#x503C;&#x662F;:15</code></li>
-</ol>
-<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x4E00;&#x6B21;&#x5BF9;&#x8FD9;&#x4E94;&#x79CD;&#x65B9;&#x6CD5;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x3002;</p>
+          <h4 id="&#x65B9;&#x6CD5;&#x96C6;&#x9526;"><a href="#&#x65B9;&#x6CD5;&#x96C6;&#x9526;" class="headerlink" title="&#x65B9;&#x6CD5;&#x96C6;&#x9526;"></a>&#x65B9;&#x6CD5;&#x96C6;&#x9526;</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;len([]rune(str))</span><br><span class="line">&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;utf8.RuneCountInString(s string)</span><br><span class="line">&#x65B9;&#x6CD5;&#x4E09;&#xFF1A;utf8.RuneCount(p []byte)</span><br><span class="line">&#x65B9;&#x6CD5;&#x56DB;&#xFF1A;strings.Count(s, substr string)-1</span><br><span class="line">&#x65B9;&#x6CD5;&#x4E94;&#xFF1A;bytes.Count(s, sep []byte)-1</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/03/09/Golang%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/#more" rel="contents">
